@@ -4,15 +4,15 @@ import { Navbar } from '@/components/Navbar';
 import { UseBudgetCard } from '@/components/UseBudgetCard';
 import { BudgetRespository } from '@/models/budgets/BudgetRepository';
 import { UserRepository } from '@/models/users/UserRepository';
-import { NextRequest, NextResponse } from 'next/server';
+import { redirect } from 'next/navigation';
 
 const DEMO_USER_ID = '4b4aab85-2ea0-483d-aa15-e2b0f97498fd';
 
-export default async function DashboardPage(request: NextRequest) {
+export default async function DashboardPage() {
   // TODO: Auth
   const user = await UserRepository.getUserById(DEMO_USER_ID, { team: true });
   if (!user || !user.team) {
-    return NextResponse.redirect(new URL('/unauthorized', request.url));
+    redirect('/unauthorized');
   }
 
   const budgets = await BudgetRespository.getActiveBudgets(user.team.id);
