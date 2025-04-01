@@ -38,7 +38,7 @@ async function seed() {
       {
         id: crypto.randomUUID(),
         name: '2025 budget',
-        amount: '200.00',
+        amount: 200.0,
         startDate: new Date('2025-01-01'),
         endDate: new Date('2026-01-01'),
         teamId: rubberduckTeam.id,
@@ -46,7 +46,7 @@ async function seed() {
       {
         id: crypto.randomUUID(),
         name: '2025 spring budget',
-        amount: '100.00',
+        amount: 100.0,
         startDate: new Date('2025-03-21'),
         endDate: new Date('2025-06-21'),
         teamId: rubberduckTeam.id,
