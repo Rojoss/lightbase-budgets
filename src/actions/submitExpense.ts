@@ -3,6 +3,7 @@
 import { BudgetRespository } from '@/models/budgets/BudgetRepository';
 import { BudgetService } from '@/models/budgets/BudgetService';
 import { BudgetUtils } from '@/models/budgets/BudgetUtils';
+import { revalidatePath } from 'next/cache';
 
 export default async function submitExpense(formData: FormData) {
   const budgetId = formData.get('budget') as string;
@@ -23,4 +24,6 @@ export default async function submitExpense(formData: FormData) {
   }
 
   await BudgetService.addExpense(budget, amount, message);
+
+  revalidatePath('/dashboard');
 }
